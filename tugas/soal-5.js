@@ -8,8 +8,8 @@ const nilaiKelas = [
 ];
 
 // hitung rata-rata tugas setiap siswa menggunakan spread dan reduce()
-const rataRata = nilaiKelas.reduce((acc, { nama, tugas }) => ({ ...acc, [nama]: tugas.reduce((total, nilai) => total + nilai, 0) / tugas.length }), {});
-console.log(rataRata);
+const rataRataTugas = nilaiKelas.reduce((total, { tugas }) => [...total, tugas.reduce((total, nilai) => total + nilai, 0) / tugas.length], []);
+console.log(rataRataTugas);
 
 // hitung nilai akhir ( tugas 30%, uts 30% dan uas 40% ) menggunakan destructuring
 const nilaiAkhir = nilaiKelas.map(({ nama, tugas, uts, uas }) => ({ nama, nilaiAkhir: tugas.reduce((total, nilai) => total + nilai, 0) * 0.3 + uts * 0.3 + uas * 0.4}));
@@ -26,3 +26,5 @@ console.log("siswa terbaik:", terbaik);
 // buat laporan menggunakan map() dan destructuring
 const laporan = nilaiKelas.map(({ nama, tugas, uts, uas }) => ({ nama, tugas, uts, uas, nilaiAkhir: tugas.reduce((total, nilai) => total + nilai, 0) * 0.3 + uts * 0.3 + uas * 0.4 })); 
 console.log(laporan);
+
+
